@@ -33,20 +33,14 @@ jobs:
             // 기본 라벨: stale
             const labelsToAdd = ['stale'];
 
-            // 이슈 본문에서 해당 키워드를 포함하는 라벨 추가
-            Object.entries(labelMap)
-              .filter(([key]) => issueBody.includes(key))
-              .forEach(([, label]) => labelsToAdd.push(label));
-
-            // 라벨 추가
-            if (labelsToAdd.length > 0) {
+            
               await github.rest.issues.addLabels({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 issue_number: github.context.issue.number,
                 labels: labelsToAdd
               });
-            }
+            
 
   notify-discord:
     runs-on: ubuntu-latest
