@@ -13,7 +13,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueBody = github.context.payload.issue.body;
 
             // 라벨 맵 정의
             const labelMap = {
