@@ -14,30 +14,14 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
 
-            // 라벨 맵 정의
-            const labelMap = {
-              "Not sure": "area: unknown",
-              "Authentication (After)": "area: authentication",
-              "Connection": "area: connection",
-              "UI Loading and Streaming": "area: ui-streaming",
-              "Markdown (MDX)": "area: markdown",
-              "React functionality": "area: react",
-              "Testing environment": "area: testing",
-              "Build (Turbopack)": "area: turbopack",
-              "TypeScript": "area: typescript",
-              "Webpack": "area: webpack",
-              "Documentation": "area: docs"
-            };
 
-            // 기본 라벨: stale
-            const labelsToAdd = ['stale'];
+          const issue_number = context.payload.issue.number;
 
-            
-              await github.rest.issues.addLabels({
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
-                issue_number: github.context.issue.number,
-                labels: labelsToAdd
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue_number,
+              labels: ['stale'] 
               });
             
 
