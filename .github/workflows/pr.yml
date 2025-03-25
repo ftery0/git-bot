@@ -24,7 +24,7 @@ jobs:
             const comment = context.payload.comment ? context.payload.comment.body.toLowerCase() : '';
             
             
-            if (comment.includes('.delete')) {
+            if (comment.includes('/close')) {
               
               await github.rest.pulls.update({
                 owner: context.repo.owner,
@@ -32,7 +32,7 @@ jobs:
                 pull_number: pr_number,
                 state: 'closed',
               });
-              console.log(`PR #${pr_number} has been closed using .delete command`);
+              console.log(`PR #${pr_number} has been closed using /close command`);
             }
 
             if (comment.includes('/approve')) {
